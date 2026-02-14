@@ -111,18 +111,16 @@
         <div class="gif-container">
             <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMG9kYzdoczZ0eW5leHhmN2lrdWlxZDVzZDA1dXR0eWp5Nzk5MXN0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1TG2zzkNW2Ou4/giphy.gif" alt="Stitch Dancing Celebration">
         </div>
-        <h1>Yay! I knew you would say yes! ❤️</h1>
+        <h1>Love You Poll Ayy! 😍</h1>
     </div>
 
 
     <script>
-        // Get references to the HTML elements we need to manipulate
         const questionContainer = document.getElementById('question-container');
         const successContainer = document.getElementById('success-container');
         const yesBtn = document.querySelector('.yes-btn');
         const noBtn = document.querySelector('.no-btn');
 
-        // The list of guilt-tripping phrases that will cycle
         const phrases = [
             "No",
             "Are you sure?",
@@ -144,26 +142,28 @@
         ];
 
         let phraseIndex = 0;
-        let currentFontSize = 1.2; // Initial font size in rem
+        let currentFontSize = 1.2;
 
-        // Function triggered when "No" is clicked
         function handleNoClick() {
-            // 1. Change the text on the No button to the next phrase
-            phraseIndex = (phraseIndex + 1) % phrases.length;
+            // 1. "Never turn back" logic
+            // We only increment the index IF we are not at the last phrase yet.
+            if (phraseIndex < phrases.length - 1) {
+                phraseIndex++;
+            }
+            // If we are at the last phrase, it just stays there (no looping).
             noBtn.innerText = phrases[phraseIndex];
 
-            // 2. Make the Yes button aggressively bigger
-            currentFontSize += 0.8; // Increase font size significantly
+            // 2. "Increasing the size" logic
+            // The Yes button grows aggressively on every click
+            currentFontSize += 1.5; // Made this number bigger for faster growth
             yesBtn.style.fontSize = `${currentFontSize}rem`;
             
-            // Increase padding too so the button doesn't look weirdly stretched
-            const currentPadding = 15 + (phraseIndex * 8);
+            // Adjust padding to keep the button looking round and nice
+            const currentPadding = 15 + (phraseIndex * 10);
             yesBtn.style.padding = `${currentPadding}px ${currentPadding * 2}px`;
         }
 
-        // Function triggered when "Yes" is clicked
         function handleYesClick() {
-            // Hide the question container and show the success container
             questionContainer.style.display = 'none';
             successContainer.style.display = 'flex';
         }
